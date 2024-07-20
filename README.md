@@ -2,7 +2,8 @@
 
 This repository contains Terraform configuration files to deploy a simple AWS infrastructure setup, including a VPC, subnet, internet gateway, route table, security group, EC2 instance, and S3 bucket.
 
-IMPORTENT NOTES!
+## IMPORTENT NOTES!
+
 1. You must manually create a key pair in your availability zone for the EC2 instance.
 2. Ensure the S3 bucket is manually created before running Terraform apply.
 3. Ensure you have user credentials with an access key ID and secret access key to create resources in AWS.
@@ -36,8 +37,9 @@ IMPORTENT NOTES!
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/SergeyZaika/aws-terraform-infra-setup.git
+   cd aws-terraform-infra-setup
+
 2. Initialize Terraform
 
 Initialize the Terraform working directory and download the necessary provider plugins.
