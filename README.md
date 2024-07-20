@@ -2,7 +2,7 @@
 
 This repository contains Terraform configuration files to deploy a simple AWS infrastructure setup, including a VPC, subnet, internet gateway, route table, security group, EC2 instance, and S3 bucket.
 
-## IMPORTENT NOTES!
+## IMPORTANT NOTES!
 
 1. You must manually create a key pair in your availability zone for the EC2 instance.
 2. Ensure the S3 bucket is manually created before running Terraform apply.
@@ -48,13 +48,17 @@ terraform init
 3. Set Up S3 Bucket
 
 Before running terraform apply, you need to manually create the S3 bucket that will be used for the Terraform state backend.
+
 aws s3api create-bucket --bucket my-statement-bucket --region eu-central-1
+
 Ensure that the bucket name matches the one specified in the terraform block in main.tf.
 
 4. Search for an AMI in Your Region
 
 Use the following AWS CLI command to find a suitable AMI in your region. Replace <search-term> with a keyword related to the type of AMI you are looking for, such as "ubuntu" or "amazon linux".
+
 aws ec2 describe-images --owners amazon --filters "Name=name,Values=<search-term>*" --query "Images[*].[ImageId,Name]" --output table --region eu-central-1
+
 Select an appropriate AMI ID from the output and update the ami attribute in the aws_instance resource in main.tf.
 
 5. Review and Modify Variables
@@ -76,3 +80,24 @@ To destroy the infrastructure and avoid incurring charges, run the following com
 terraform destroy
 Review the changes and type yes to confirm.
 
+## How to Insert Key Pair to Terraform Configuration
+1. Create a Key Pair in AWS
+
+You can create a key pair in your AWS Management Console under EC2 -> Key Pairs -> Create Key Pair. Download the key pair file (e.g., my-key-pair.pem).
+
+2. Add the Key Pair to Your Terraform Configuration
+
+Open the variables.tf file and ensure you have a variable defined for the key name:
+
+hcl
+Copy code
+variable "key_name" {
+  description = "The name of the key pair to use for SSH access to the EC2 instance"
+  type        = string
+}
+Then, open the terraform.tfvars file or the relevant section in your main.tf file and set the key_name variable:
+
+hcl
+Copy code
+key_name = "my-key-pair"
+Ensure that the key name matches the key pair you created in the AWS Management Console.
