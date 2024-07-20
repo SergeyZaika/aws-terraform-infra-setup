@@ -1,0 +1,6 @@
+aws-terraform-infra-setup/
+├── .gitignore
+├── README.md
+├── main.tf
+├── variables.tf
+├── outputs.tf
