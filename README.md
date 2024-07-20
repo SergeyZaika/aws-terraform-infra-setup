@@ -2,6 +2,11 @@
 
 This repository contains Terraform configuration files to deploy a simple AWS infrastructure setup, including a VPC, subnet, internet gateway, route table, security group, EC2 instance, and S3 bucket.
 
+IMPORTENT NOTES!
+1. You must manually create a key pair in your availability zone for the EC2 instance.
+2. Ensure the S3 bucket is manually created before running Terraform apply.
+3. Ensure you have user credentials with an access key ID and secret access key to create resources in AWS.
+
 ## Infrastructure Components
 
 1. **VPC**: Creates a Virtual Private Cloud with a CIDR block of `10.0.0.0/16`.
